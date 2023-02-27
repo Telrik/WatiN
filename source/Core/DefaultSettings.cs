@@ -38,6 +38,7 @@ namespace WatiN.Core
             public IFindByDefaultFactory findByDefaultFactory;
             public bool makeNewIe8InstanceNoMerge;
             public bool closeExistingFireFoxInstances;
+            public bool incognitoMode;
         }
 
         private settingsStruct settings;
@@ -50,6 +51,12 @@ namespace WatiN.Core
         private DefaultSettings(settingsStruct settings)
         {
             this.settings = settings;
+        }
+
+        public bool OpenInIncognitoMode
+        {
+            get { return settings.incognitoMode; }
+            set { settings.incognitoMode = value; }
         }
 
         /// <summary>
@@ -72,21 +79,22 @@ namespace WatiN.Core
         private void SetDefaults()
         {
             settings = new settingsStruct
-                           {
-                               attachToBrowserTimeOut = 30,
-                               waitUntilExistsTimeOut = 30,
-                               waitForCompleteTimeOut = 30,
-                               sleepTime = 30,
-                               highLightElement = true,
-                               highLightColor = "yellow",
-                               autoCloseDialogs = true,
-                               autoStartDialogWatcher = true,
-                               autoMoveMousePointerToTopLeft = true,
-                               makeNewIEInstanceVisible = true,
-                               findByDefaultFactory = new FindByDefaultFactory(),
-                               makeNewIe8InstanceNoMerge = true,
-                               closeExistingFireFoxInstances = true
-                           };
+            {
+                attachToBrowserTimeOut = 30,
+                waitUntilExistsTimeOut = 30,
+                waitForCompleteTimeOut = 30,
+                sleepTime = 30,
+                highLightElement = true,
+                highLightColor = "yellow",
+                autoCloseDialogs = true,
+                autoStartDialogWatcher = true,
+                autoMoveMousePointerToTopLeft = true,
+                makeNewIEInstanceVisible = true,
+                findByDefaultFactory = new FindByDefaultFactory(),
+                makeNewIe8InstanceNoMerge = true,
+                closeExistingFireFoxInstances = true,
+                incognitoMode = false
+            };
         }
 
         /// <summary>
